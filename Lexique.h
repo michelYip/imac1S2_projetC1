@@ -1,3 +1,4 @@
+/*@uthor : CRUVEILLIER Marie & YIP Michel*/
 #ifndef __LEXIQUE__
 #define __LEXIQUE__
 

@@ -1,3 +1,4 @@
+/*@uthor : CRUVEILLIER Marie & YIP Michel*/
 #include "arbreLexical.h"
 
 
@@ -47,7 +48,7 @@ void addWord(Arbre * tree, char * word){
 
 /* Affiche tout les mots de l'arbre lexical tree en paramètre */
 void printDictionnary(Arbre tree){
-	static char buffer[MAXLENGHT];
+	static char buffer[MAXLENGTH];
 	static int index = 0;
 	if (tree != NULL){
 		buffer[index++] = tree->lettre;

@@ -1,10 +1,11 @@
+/*@uthor : CRUVEILLIER Marie & YIP Michel*/
 #ifndef __ARBRE_LEXICAL__
 #define __ARBRE_LEXICAL__
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXLENGHT 50
+#define MAXLENGTH 50
 
 typedef struct noeud{
 	unsigned char lettre;

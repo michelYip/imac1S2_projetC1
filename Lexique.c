@@ -1,3 +1,4 @@
+/*@uthor : CRUVEILLIER Marie & YIP Michel*/
 #include "Lexique.h"
 
 int main(int argc, char ** argv){
@@ -12,6 +13,7 @@ int main(int argc, char ** argv){
 	printf("End of program...\n");
 
 	return 1;
+
 /*
 	printf("Affichage de l'arbre lexicographique ... \n");
 	addWord(&dict, "Hola");
@@ -40,17 +42,10 @@ int main(int argc, char ** argv){
 
 /* Construit un arbre lexical depuis un fichier d'entrée */
 void createTreeFromFile(Arbre * tree, char * in){
-	FILE * fp = fopen(in, "r");
-	char * word;
-	if ((word = malloc(sizeof(char)*MAXLENGHT)) == NULL){
-		fprintf(stderr,"Error : could not malloc node, abort program...\n");
-		exit(EXIT_FAILURE);
+	FILE * f = fopen(in, "r");
+	char str[MAXLENGTH];
+	while (fscanf(f, " %s ", str) == 1){
+		addWord(tree, str);
 	}
-	/* Boucle infinie oups */
-	while(fp){
-		fscanf(fp, " %s ", word);
-		printf("Adding %s :\n", word);
-		addWord(tree, word);
-	}
-	fclose(fp);
+	fclose(f);
 }
