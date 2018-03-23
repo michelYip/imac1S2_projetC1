@@ -26,40 +26,6 @@ int main(int argc, char ** argv){
 			fprintf(stderr,"This file does not exist, cannot do any operation on it\n");
 			
 			/* - Simple test - Begin */
-			/*
-				printf("Traitement de dict ...\n");
-				addWord(&dict, (unsigned char *)"chat");
-				addWord(&dict, (unsigned char *)"tournesol");
-				addWord(&dict, (unsigned char *)"tournefeuille");
-				addWord(&dict, (unsigned char *)"soleil");
-				addWord(&dict, (unsigned char *)"sol");
-				addWord(&dict, (unsigned char *)"hiver");
-				addWord(&dict, (unsigned char *)"tous");
-				addWord(&dict, (unsigned char *)"chien");
-				addWord(&dict, (unsigned char *)"les");
-				addWord(&dict, (unsigned char *)"le");
-				addWord(&dict, (unsigned char *)"l");
-				addWord(&dict, (unsigned char *)"chateau");
-				addWord(&dict, (unsigned char *)"maisons");
-
-				printDictionnary(dict);
-			*/
-			/*
-				printf("%d\n",search(dict,(unsigned char *)"sol"));
-				printf("%d\n",search(dict,(unsigned char *)"de"));
-			
-			
-				createFileFromTree(dict,"test",0);
-				createFileFromTree(dict,"test",1);
-
-				printf("Traitement de dico ...\n");
-				createTreeFromDICO(&dico, "test.DICO");
-				printDictionnary(dico);
-				createFileFromTree(dict,"test2",1);				
-			*/
-
-			/* - Simple test - End */
-			
 			exit(EXIT_FAILURE);
 		}
 	}
