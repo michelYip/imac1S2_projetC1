@@ -6,6 +6,9 @@
 #include <unistd.h>
 #include "arbreLexical.h"
 
+/* Affichage du menu */
+void Menu();
+
 /* Construit un arbre lexical depuis un fichier d'entrée */
 void createTreeFromText(Arbre * tree, char * in);
 
