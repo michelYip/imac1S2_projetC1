@@ -35,7 +35,7 @@ int main(int argc, char ** argv){
 	return 1;
 */
 	/* TODO :*/
-	if (argc > 3 || argc < 2){
+	if (argc > 4 || argc < 2){
 		/*
 		Erreur : nombre de paramètre invalide
 		*/
@@ -56,21 +56,29 @@ int main(int argc, char ** argv){
 			fprintf(stderr,"This file does not exist, cannot do any operation on it\n");
 			
 			/* - Simple test - Begin */
-				addWord(&dict, "l");
-				addWord(&dict, "le");
-				addWord(&dict, "les");
+				addWord(&dict, (unsigned char *)"chat");
+				addWord(&dict, (unsigned char *)"tournesol");
+				addWord(&dict, (unsigned char *)"tournefeuille");
 
-				addWord(&dict, "des");
-				addWord(&dict, "de");
-				addWord(&dict, "d");
+				addWord(&dict, (unsigned char *)"soleil");
+				addWord(&dict, (unsigned char *)"sol");
+				addWord(&dict, (unsigned char *)"hiver");
+
+				addWord(&dict, (unsigned char *)"tous");
+				addWord(&dict, (unsigned char *)"chien");
+				addWord(&dict, (unsigned char *)"les");
+				addWord(&dict, (unsigned char *)"le");
+				addWord(&dict, (unsigned char *)"l");
+				addWord(&dict, (unsigned char *)"chateau");
+
 				printDictionnary(dict);
-				printf("%d\n",search(dict,"de"));
+				printf("%d\n",search(dict,(unsigned char *)"sol"));
 			/* - Simple test - End */
 			
 			exit(EXIT_FAILURE);
 		}
 	}
-	else if (argc <= 3){
+	else if (argc <= 4){
 		/*
 		Vérification de l'option :
 			si -S : 
