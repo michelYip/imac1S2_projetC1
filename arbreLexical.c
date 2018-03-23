@@ -35,12 +35,10 @@ void addWord(Arbre * tree, unsigned char * word){
 			if (((*tree)->lettre == *word) && (*word != '\0'))
 				addWord(&(*tree)->filsg, word+1);
 			else{
-				if (*word != '\0'){
-					Arbre tmp = NULL;
-					addBranch(&tmp, word);
-					tmp->frered = (*tree);
-					(*tree) = tmp;
-				}
+				Arbre tmp = NULL;
+				addBranch(&tmp, word);
+				tmp->frered = (*tree);
+				(*tree) = tmp;
 			}
 		}
 	}

@@ -52,8 +52,22 @@ int main(int argc, char ** argv){
 			/* ---- file exist ---- */
 			printf("This file exist !\n");
 		} else {
-			printf("This file does not exist ! \n");
 			/* ---- file does not exist ---- */
+			fprintf(stderr,"This file does not exist, cannot do any operation on it\n");
+			
+			/* - Simple test - Begin */
+				addWord(&dict, "l");
+				addWord(&dict, "le");
+				addWord(&dict, "les");
+
+				addWord(&dict, "des");
+				addWord(&dict, "de");
+				addWord(&dict, "d");
+				printDictionnary(dict);
+				printf("%d\n",search(dict,"de"));
+			/* - Simple test - End */
+			
+			exit(EXIT_FAILURE);
 		}
 	}
 	else if (argc <= 3){
