@@ -4,7 +4,6 @@
 int main(int argc, char ** argv){
 	Arbre dict;
 
-
 	printf("Creating dictionnary...\n");
 
 	createTreeFromFile(&dict, "test.txt");
@@ -14,7 +13,6 @@ int main(int argc, char ** argv){
 	printf("End of program...\n");
 
 	return 1;
-
 
 /*
 	printf("Affichage de l'arbre lexicographique ... \n");
@@ -36,7 +34,6 @@ int main(int argc, char ** argv){
 	addWord(&dict, "ôla");
 	addWord(&dict, "è.é è.é");
 	addWord(&dict, "'");
-
 	printDictionnary(dict);
 
 	printf("\"Guten Tag\" est présent dans le dictionnaire : %d\n",search(dict,"Guten Tag"));
@@ -77,6 +74,3 @@ void createLexique(FILE * f, Arbre tree);
 
 /* Construit un fichier .DICO à partir de l'arbre en paramètre */
 void createDict(FILE * f, Arbre tree);
-
-
-

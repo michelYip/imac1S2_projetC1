@@ -33,7 +33,6 @@ la fonction renvoie :
 int search(Arbre tree, unsigned char * word);
 
 
-
 /* TODO : */
 /* Libère la mémoire allouée par l'arbre tree en paramètre */
 void freeTree(Arbre * tree);
