@@ -2,39 +2,8 @@
 #include "Lexique.h"
 
 int main(int argc, char ** argv){
+	Menu();
 	Arbre dict;
-/*
-	printf("Creating dictionnary...\n");
-
-	createTreeFromText(&dict, "test.txt");
-	printf("Printing dictionnary...\n");
-	printDictionnary(dict);
-
-	printf("Creating Dictionnary from dict...\n");
-	createFileFromTree(dict, "dico", 1);
-	createFileFromTree(dict, "lexique", 0);
-
-	printf("End of program...\n");
-
-	return 1;
-*/
-/*
-	printf("Affichage de l'arbre lexicographique ... \n");
-	addWord(&dict, (unsigned char *)"ce");
-	addWord(&dict, (unsigned char *)"ces");
-	addWord(&dict, (unsigned char *)"des");
-	addWord(&dict, (unsigned char *)"le"); 
-	addWord(&dict, (unsigned char *)"les");
-	addWord(&dict, (unsigned char *)"lettre");
-	addWord(&dict, (unsigned char *)"mes");
-	addWord(&dict, (unsigned char *)"mettre");
-	printDictionnary(dict);	
-
-	printf("Creating Dictionnary from dict...\n");
-	createFileFromTree(dict, "dico", 1);
-	return 1;
-*/
-	/* TODO :*/
 	if (argc > 4 || argc < 2){
 		/*
 		Erreur : nombre de paramètre invalide
@@ -48,12 +17,12 @@ int main(int argc, char ** argv){
 			- le fichier existe, afficher le menu + traitement
 			- le fichier n'existe pas, quitter le programme
 		*/
+		
 		if (access(argv[1], F_OK) != -1){
 			/* ---- file exist ---- */
 			printf("This file exist !\n");
 		} else {
 			/* ---- file does not exist ---- */
-			fprintf(stderr,"This file does not exist, cannot do any operation on it\n");
 			
 			/* - Simple test - Begin */
 				addWord(&dict, (unsigned char *)"chat");
@@ -102,6 +71,23 @@ int main(int argc, char ** argv){
 
 	return 1;
 } 
+
+/* Fais afficher un menu */
+void Menu(){
+	int i;
+	printf("  ");
+	for(i=0;i<13;i++)
+		printf("_ _");
+	printf("\n\n | Voir la liste triée..........Taper 1 |");
+	printf("\n\n | Sauvegarder liste triée......Taper 2 |");
+	printf("\n\n | Rechercher un mot............Taper 3 |");
+	printf("\n\n | Sauvegarder l'arbre..........Taper 4 |\n");
+	printf("  ");
+	for(i=0;i<13;i++)
+		printf("_ _");
+	printf("\n");
+}
+
 
 /* Construit un arbre lexical depuis un fichier d'entrée */
 void createTreeFromText(Arbre * tree, char * in){
