@@ -65,6 +65,10 @@ int main(int argc, char ** argv){
 				addWord(&dict, "d");
 				printDictionnary(dict);
 				printf("%d\n",search(dict,"de"));
+				createFileFromTree(dict,"test",0);
+				createFileFromTree(dict,"test",1);
+
+
 			/* - Simple test - End */
 			
 			exit(EXIT_FAILURE);
@@ -116,8 +120,24 @@ void createTreeFromText(Arbre * tree, char * in){
 /* TODO : */
 /* Construit un fichier .L à partir de l'arbre en paramètre */
 void createLexique(FILE * f, Arbre tree){
-	return;
-}
+	static char buffer[MAXLENGTH];
+	static int index = 0;	
+	int i;
+	if(tree != NULL){
+		buffer[index++] = tree->lettre;
+		if(tree->lettre=='\0'){
+			for(i=0; buffer[i] != '\0'; i++){
+				fputc(buffer[i], f);
+			}
+			fputc('\n', f);
+		}
+		else 
+			createLexique(f,tree->filsg);
+		index--;
+		if(tree->frered != NULL)
+			createLexique(f,tree->frered);
+	}
+}	
 
 /* Construit un fichier .DICO à partir de l'arbre en paramètre */
 void createDict(FILE * f, Arbre tree){
@@ -159,3 +179,10 @@ void createFileFromTree(Arbre tree, char * out, int flag){
 
 	fclose(f);
 }
+
+
+
+
+
+
+
