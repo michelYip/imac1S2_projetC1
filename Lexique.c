@@ -2,38 +2,8 @@
 #include "Lexique.h"
 
 int main(int argc, char ** argv){
-	Arbre dict;
-/*
-	printf("Creating dictionnary...\n");
+	Arbre dict = NULL, dico = NULL;
 
-	createTreeFromText(&dict, "test.txt");
-	printf("Printing dictionnary...\n");
-	printDictionnary(dict);
-
-	printf("Creating Dictionnary from dict...\n");
-	createFileFromTree(dict, "dico", 1);
-	createFileFromTree(dict, "lexique", 0);
-
-	printf("End of program...\n");
-
-	return 1;
-*/
-/*
-	printf("Affichage de l'arbre lexicographique ... \n");
-	addWord(&dict, (unsigned char *)"ce");
-	addWord(&dict, (unsigned char *)"ces");
-	addWord(&dict, (unsigned char *)"des");
-	addWord(&dict, (unsigned char *)"le"); 
-	addWord(&dict, (unsigned char *)"les");
-	addWord(&dict, (unsigned char *)"lettre");
-	addWord(&dict, (unsigned char *)"mes");
-	addWord(&dict, (unsigned char *)"mettre");
-	printDictionnary(dict);	
-
-	printf("Creating Dictionnary from dict...\n");
-	createFileFromTree(dict, "dico", 1);
-	return 1;
-*/
 	/* TODO :*/
 	if (argc > 4 || argc < 2){
 		/*
@@ -56,26 +26,37 @@ int main(int argc, char ** argv){
 			fprintf(stderr,"This file does not exist, cannot do any operation on it\n");
 			
 			/* - Simple test - Begin */
+			/*
+				printf("Traitement de dict ...\n");
 				addWord(&dict, (unsigned char *)"chat");
 				addWord(&dict, (unsigned char *)"tournesol");
 				addWord(&dict, (unsigned char *)"tournefeuille");
-
 				addWord(&dict, (unsigned char *)"soleil");
 				addWord(&dict, (unsigned char *)"sol");
 				addWord(&dict, (unsigned char *)"hiver");
-
 				addWord(&dict, (unsigned char *)"tous");
 				addWord(&dict, (unsigned char *)"chien");
 				addWord(&dict, (unsigned char *)"les");
 				addWord(&dict, (unsigned char *)"le");
 				addWord(&dict, (unsigned char *)"l");
 				addWord(&dict, (unsigned char *)"chateau");
+				addWord(&dict, (unsigned char *)"maisons");
 
 				printDictionnary(dict);
+			*/
+			/*
 				printf("%d\n",search(dict,(unsigned char *)"sol"));
-				printf("%d\n",search(dict,"de"));
+				printf("%d\n",search(dict,(unsigned char *)"de"));
+			
+			
 				createFileFromTree(dict,"test",0);
 				createFileFromTree(dict,"test",1);
+
+				printf("Traitement de dico ...\n");
+				createTreeFromDICO(&dico, "test.DICO");
+				printDictionnary(dico);
+				createFileFromTree(dict,"test2",1);				
+			*/
 
 			/* - Simple test - End */
 			
@@ -124,8 +105,27 @@ void createTreeFromText(Arbre * tree, char * in){
 	fclose(f);
 }
 
+/* Construit un arbre lexical depuis un fichier .DICO */
+void createTreeFromDICO(Arbre * tree, char * in){
+	FILE * f = fopen(in,"r");
+	unsigned char str[MAXLENGTH];
+	int i = 0;
+		while((str[i] = fgetc(f)) != (unsigned char)EOF){
+		if (str[i] == ' '){
+			str[i] = '\0';
+			i--;
+			addWord(tree, str);
+		}
+		if (str[i] == '\n'){
+			i--;
+		}
+		else{
+			i++;
+		}
+	}
+	fclose(f);
+}
 
-/* TODO : */
 /* Construit un fichier .L à partir de l'arbre en paramètre */
 void createLexique(FILE * f, Arbre tree){
 	static char buffer[MAXLENGTH];
@@ -133,17 +133,17 @@ void createLexique(FILE * f, Arbre tree){
 	int i;
 	if(tree != NULL){
 		buffer[index++] = tree->lettre;
-		if(tree->lettre=='\0'){
-			for(i=0; buffer[i] != '\0'; i++){
+		if(tree->lettre == '\0'){
+			for(i = 0; buffer[i] != '\0'; i++){
 				fputc(buffer[i], f);
 			}
 			fputc('\n', f);
 		}
 		else 
-			createLexique(f,tree->filsg);
+			createLexique(f, tree->filsg);
 		index--;
 		if(tree->frered != NULL)
-			createLexique(f,tree->frered);
+			createLexique(f, tree->frered);
 	}
 }	
 

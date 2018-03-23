@@ -9,7 +9,9 @@
 /* Construit un arbre lexical depuis un fichier d'entrée */
 void createTreeFromText(Arbre * tree, char * in);
 
-/* TODO : */
+/* Construit un arbre lexical depuis un fichier .DICO */
+void createTreeFromDICO(Arbre * tree, char * in);
+
 /* Construit un fichier .L à partir de l'arbre en paramètre */
 void createLexique(FILE * f, Arbre tree);
 

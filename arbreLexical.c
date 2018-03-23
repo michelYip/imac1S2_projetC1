@@ -26,14 +26,17 @@ void addBranch(Arbre * tree, unsigned char * word){
 
 /* Ajoute dans l'arbre lexical tree le mot word en paramètre */
 void addWord(Arbre * tree, unsigned char * word){
-	if (*tree == NULL)
+	if (*tree == NULL){
 		addBranch(tree, word);
+	}
 	else {
-		if ((*tree)->lettre < *word)
+		if ((*tree)->lettre < *word){
 			addWord(&(*tree)->frered, word);
+		}
 		else{
-			if (((*tree)->lettre == *word) && (*word != '\0'))
+			if (((*tree)->lettre == *word) && (*word != '\0')){
 				addWord(&(*tree)->filsg, word+1);
+			}
 			else{
 				Arbre tmp = NULL;
 				addBranch(&tmp, word);
