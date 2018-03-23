@@ -24,4 +24,11 @@ void createDict(FILE * f, Arbre tree);
 /* Construit un fichier .L ou .DICO à partir d'un arbre lexical en entrée */
 void createFileFromTree(Arbre tree, char * out, int flag);
 
+/* 
+ * Vérifie d'abord si le fichier file entré en paramètre est un fichier .DICO, si oui créer un arbre avec
+ * Sinon vérifie si un fichier file.DICO existe, si oui créer l'arbre avec
+ * Sinon créer un arbre avec le texte du fichier file
+ */
+void searchForDICOFile(Arbre * tree, char * file);
+
 #endif

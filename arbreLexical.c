@@ -36,8 +36,9 @@ void addWord(Arbre * tree, unsigned char * word){
 		else{
 			if (((*tree)->lettre == *word) && (*word != '\0')){
 				addWord(&(*tree)->filsg, word+1);
-			}
-			else{
+			} else if (((*tree)->lettre == *word) && (*word == '\0')){
+				return;
+			} else{
 				Arbre tmp = NULL;
 				addBranch(&tmp, word);
 				tmp->frered = (*tree);
