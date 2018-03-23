@@ -2,7 +2,7 @@
 #include "Lexique.h"
 
 int main(int argc, char ** argv){
-	Arbre dict = NULL, dico = NULL;
+	Arbre dict = NULL;
 
 	if (argc > 4 || argc < 2){
 		/*
@@ -17,13 +17,46 @@ int main(int argc, char ** argv){
 			- le fichier existe, afficher le menu + traitement
 			- le fichier n'existe pas, quitter le programme
 		*/
-		
 		if (access(argv[1], F_OK) != -1){
 			/* ---- file exist ---- */
+			
+			/* Verification si le dico existe, construit l'arbre en fonction : à mettre dans une fonction */
+				char * token, * ext, * DICOFile = NULL, * filename;
+				
+				if((filename = malloc(sizeof(char)*strlen(argv[1]))) == NULL){
+					fprintf(stderr, "Could not allocate memory in searchForDICOFile : abort...\n");
+					exit(EXIT_FAILURE);
+				}
+				strcpy(filename, argv[1]);
+				token = strtok(argv[1],".");
+				while (token != NULL){
+					ext = token;
+					token = strtok(NULL, ".");
+				}
+				if (strcmp(ext, "DICO") == 0){
+					printf("The dico exist !\nCreating tree from dico : %s\n", filename);
+					createTreeFromDICO(&dict, filename);
+				} else {
+					if ((DICOFile = malloc(sizeof(char)*(strlen(argv[1])+5))) == NULL){
+						fprintf(stderr, "Could not allocate memory in searchForDICOFile : abort...\n");
+						exit(EXIT_FAILURE);
+					}
+					sprintf(DICOFile, "%s.DICO", filename);
+					if (access(DICOFile, F_OK) != -1){
+						printf("The dico exist !\nCreating tree from dico : %s\n", DICOFile);
+						createTreeFromDICO(&dict, DICOFile);
+					} else {
+						printf("The dico does not exist !\nCreating tree from file : %s\n",filename);
+						createTreeFromText(&dict, filename);
+					}
+				}
+			/* Fin vérification */
+
 			Menu();
-			printf("This file exist !\n");
+
 		} else {
 			/* ---- file does not exist ---- */
+			fprintf(stderr,"File doesn't exist, cannot do any operation : abort program...\n");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -31,8 +64,8 @@ int main(int argc, char ** argv){
 		/*
 		Vérification de l'option :
 			si -S : 
-				reconstruction d'un arbre depuis argv[1] 
-				puis d'un fichier .DICO vers argv[1].DICO
+				reconstruction d'un arbre depuis argv[2] 
+				puis d'un fichier .DICO vers argv[2].DICO
 			sinon
 				si -r : 
 					reconstitution d'un arbre depuis argv[3].DICO s'il existe, argv[3] sinon 
