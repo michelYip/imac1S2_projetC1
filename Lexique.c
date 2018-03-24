@@ -198,25 +198,27 @@ void searchForDICOFile(Arbre * tree, char * file){
 		fprintf(stderr, "Could not allocate memory in searchForDICOFile : abort...\n");
 		exit(EXIT_FAILURE);
 	}
+	
 	strcpy(filename, file);
+	
 	/* Vérification de l'extension du fichier */
-	token = strtok(file,".");
+	token = strtok(filename,".");
 	while (token != NULL){
 		ext = token;
 		token = strtok(NULL, ".");
 	}
-	if (strcmp(ext, "DICO") == 0)
-		createTreeFromDICO(tree, filename);
-	else {
+	if (strcmp(ext, "DICO") == 0){
+		createTreeFromDICO(tree, file);
+	} else {
 		/* Vérification de l'existence d'un fichier .DICO */
 		if ((DICOFile = malloc(sizeof(char)*(strlen(file)+5))) == NULL){
 			fprintf(stderr, "Could not allocate memory in searchForDICOFile : abort...\n");
 			exit(EXIT_FAILURE);
 		}
-		sprintf(DICOFile, "%s.DICO", filename);
+		sprintf(DICOFile, "%s.DICO", file);
 		if (access(DICOFile, F_OK) != -1)
 			createTreeFromDICO(tree, DICOFile);
 		else
-			createTreeFromText(tree, filename);
+			createTreeFromText(tree, file);
 	}
 }
