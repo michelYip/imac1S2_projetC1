@@ -18,7 +18,8 @@ int main(int argc, char ** argv){
 		} else {
 			/* ---- Le fichier existe ---- */	
 			searchForDICOFile(&dict, argv[1]);
-			char input, * searchWord = NULL;
+			char input;
+			unsigned char searchWord[MAXLENGTH];
 			int loop = 1;
 			while (loop){
 				Menu();
@@ -32,8 +33,9 @@ int main(int argc, char ** argv){
 					createFileFromTree(dict, argv[1], 0);
 				} else if (input == '3'){
 					printf("Entrez un mot à rechercher dans le lexique :\n");
-					scanf("%s ", searchWord);
-					if (search(dict, (unsigned char *)searchWord))
+					scanf("%51s", searchWord);
+					printf("word = %s\n",searchWord);
+					if (search(dict, searchWord))
 						printf("Le mot \"%s\" est présent.\n", searchWord);
 					else
 						printf("Le mot \"%s\" est absent.\n", searchWord);
@@ -75,7 +77,8 @@ void Menu(){
 	printf("\n\n | Voir le lexique des mots trié....Taper 1 |");
 	printf("\n\n | Sauvegarder le lexique...........Taper 2 |");
 	printf("\n\n | Rechercher un mot................Taper 3 |");
-	printf("\n\n | Sauvegarder l'arbre..............Taper 4 |\n");
+	printf("\n\n | Sauvegarder l'arbre..............Taper 4 |");
+	printf("\n\n | Quitter le programme.............Taper Q |\n");
 	printf("  ");
 	for(i=0;i<14;i++)
 		printf("_ _");
@@ -109,7 +112,7 @@ void createTreeFromDICO(Arbre * tree, char * in){
 	FILE * f = fopen(in,"r");
 	unsigned char str[MAXLENGTH];
 	int i = 0;
-		while((str[i] = fgetc(f)) != (unsigned char)EOF){
+	while((str[i] = fgetc(f)) != (unsigned char)EOF){
 		if (str[i] == ' '){
 			str[i] = '\0';
 			i--;
