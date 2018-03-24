@@ -23,7 +23,7 @@ int main(int argc, char ** argv){
 			while (loop){
 				Menu();
 				printf("Choisissez une option :\n");
-				scanf(" %c ", &input);
+				scanf("%c", &input);
 				fflush(stdin);
 				if (input == 'Q'){
 					loop = 0;
