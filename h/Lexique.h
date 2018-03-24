@@ -4,7 +4,7 @@
 
 #include <string.h>
 #include <unistd.h>
-#include "arbreLexical.h"
+#include "./arbreLexical.h"
 
 /* Affichage du menu */
 void Menu();

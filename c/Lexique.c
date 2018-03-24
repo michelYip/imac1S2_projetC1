@@ -1,5 +1,5 @@
 /*@uthor : CRUVEILLIER Marie & YIP Michel*/
-#include "Lexique.h"
+#include "../h/Lexique.h"
 
 int main(int argc, char ** argv){
 	Arbre dict = NULL;
@@ -23,7 +23,8 @@ int main(int argc, char ** argv){
 			while (loop){
 				Menu();
 				printf("Choisissez une option :\n");
-				scanf(" %c", &input);
+				scanf(" %c ", &input);
+				fflush(stdin);
 				if (input == 'Q'){
 					loop = 0;
 				} else if (input == '1'){
@@ -40,6 +41,8 @@ int main(int argc, char ** argv){
 						printf("Le mot \"%s\" est absent.\n", searchWord);
 				} else if (input == '4'){
 					createFileFromTree(dict, argv[1], 1);
+				} else {
+					printf("Option invalide...\n");
 				}
 			}
 			printf("Fermeture du programme...\n");

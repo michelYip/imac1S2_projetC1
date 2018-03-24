@@ -1,11 +1,11 @@
 all: Lexique
 
-Lexique: Lexique.o arbreLexical.o
+Lexique: o/Lexique.o o/arbreLexical.o
 	gcc $^ -o $@
 	@echo Compilation finie.
 
 clean:
-	rm -f Lexique Lexique.o arbreLexical.o
+	rm -f Lexique o/Lexique.o o/arbreLexical.o
 
-%.o: %.c
-	gcc -c -Wall -ansi $<
+o/%.o: c/%.c
+	gcc -o $@ -c -Wall -ansi $<

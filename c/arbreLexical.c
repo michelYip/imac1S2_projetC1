@@ -1,5 +1,5 @@
 /*@uthor : CRUVEILLIER Marie & YIP Michel*/
-#include "arbreLexical.h"
+#include "../h/arbreLexical.h"
 
 
 /* Initialise un Arbre tree avec la valeur c en paramètre */
